@@ -19,15 +19,50 @@ public class Aula {
 
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getSumario() {
+        return sumario;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public LinkedList<Aluno> getAlunos() {
+        return new LinkedList<>(alunos);
+    }
+
+    public long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(long numero) {
+        this.numero = numero;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
     public void atribuirProfessor(Professor professor){
 
     }
 
-    public void adicionarAluno(Aluno aluno){
+    public void adicionar(Aluno aluno){
 
     }
 
     public void adicionarLinhaSumario(String linha) {
 
+    }
+
+    public void desassociarProfessor() {
+
+    }
+
+    public void remover(Aluno aluno) {
     }
 }

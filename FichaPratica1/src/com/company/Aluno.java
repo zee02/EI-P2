@@ -13,11 +13,25 @@ public class Aluno {
         aulas = new LinkedList<Aula>();
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(long numero) {
+        this.numero = numero;
+    }
+
     public void preencherSumario(Aula aula){
 
     }
 
-    public void adicionarAula(Aula aula){
+    public void adicionar(Aula aula) {
+    }
 
+    public void remover(Aula aula) {
     }
 }
