@@ -35,6 +35,6 @@ public class Professor {
     }
 
     public void adicionar(Aula aula){
-
+        this.aulas.add(aula);
     }
 }

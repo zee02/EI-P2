@@ -45,6 +45,7 @@ public class Aula {
 
     public void setProfessor(Professor professor) {
         this.professor = professor;
+        professor.adicionar(this);
     }
 
     public void atribuirProfessor(Professor professor){
