@@ -44,6 +44,12 @@ public class Aula {
     }
 
     public void setProfessor(Professor professor) {
+        if(professor == null || this.professor == professor){
+            return;
+        }
+        if(this.professor != null){
+            this.professor.remover(this);
+        }
         this.professor = professor;
         professor.adicionar(this);
     }
@@ -57,13 +63,19 @@ public class Aula {
     }
 
     public void adicionarLinhaSumario(String linha) {
-
+        sumario += linha + '\n';
     }
 
     public void desassociarProfessor() {
-
+        if(this.professor == null){
+            return;
+        }
+        Professor professorRemovido = this.professor;
+        this.professor = null;
+        professorRemovido.remover(this);
     }
 
     public void remover(Aluno aluno) {
+
     }
 }

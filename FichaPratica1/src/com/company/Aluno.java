@@ -26,12 +26,22 @@ public class Aluno {
     }
 
     public void preencherSumario(Aula aula){
-
+        if(aula == null || !aulas.contains(aula)){
+            return;
+        }
+        aula.adicionarLinhaSumario(nome);
     }
 
     public void adicionar(Aula aula) {
+        this.aulas.add(aula);
+        aula.adicionar(this);
     }
 
     public void remover(Aula aula) {
+        if(!this.aulas.contains(aula)){
+            return;
+        }
+        this.aulas.remove(aula);
+        aula.remover(this);
     }
 }

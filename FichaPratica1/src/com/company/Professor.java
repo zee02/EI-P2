@@ -26,15 +26,33 @@ public class Professor {
         this.numero = numero;
     }
 
-    public void removerAula(Aula aula){
-
-    }
-
     public void preencherSumario(Aula aula){
-
+        if(aula == null || !aulas.contains(aula)){
+            return;
+        }
+        
+        aula.adicionarLinhaSumario(aula.getNome());
+        aula.adicionarLinhaSumario(Long.toString(aula.getNumero()));
+        aula.adicionarLinhaSumario(this.nome);
+        for (Aluno aluno : aula.getAlunos()) {
+            aluno.preencherSumario(aula);
+        }
+        
     }
 
     public void adicionar(Aula aula){
+        if(aula == null || this.aulas.contains(aula)){
+            return;
+        }
         this.aulas.add(aula);
+        aula.setProfessor(this);
+    }
+
+    public void remover(Aula aula) {
+        if(!this.aulas.contains(aula)) {
+            return;
+        }
+        this.aulas.remove(aula);
+        aula.desassociarProfessor();
     }
 }
