@@ -33,8 +33,11 @@ public class Aluno {
     }
 
     public void adicionar(Aula aula) {
+        if(aula==null || this.aulas.contains(aula)){
+            return;
+        }
         this.aulas.add(aula);
-        aula.adicionar(this);
+
     }
 
     public void remover(Aula aula) {

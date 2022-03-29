@@ -10,13 +10,19 @@ public class Aula {
     private Professor professor;
     private LinkedList<Aluno> alunos;
 
-    public Aula(String nome, long numero){
+    public Aula(String nome, long numero,Professor professor,LinkedList<Aluno> alunos){
         this.nome = nome;
         this.numero = numero;
+        this.setProfessor(professor);
+        this.alunos = new LinkedList<>();
+        for (Aluno aluno : alunos){
+            this.adicionar(aluno);
+        }
         sumario = "";
-        professor = null;
-        alunos = new LinkedList<Aluno>();
+    }
 
+    public Aula(String nome, long numero){
+        this(nome,numero,null,new LinkedList<>());
     }
 
     public String getNome() {
@@ -59,7 +65,11 @@ public class Aula {
     }
 
     public void adicionar(Aluno aluno){
-
+        if(aluno==null || alunos.contains((aluno))){
+            return;
+        }
+        this.alunos.add(aluno);
+        aluno.adicionar(this);
     }
 
     public void adicionarLinhaSumario(String linha) {
@@ -76,6 +86,5 @@ public class Aula {
     }
 
     public void remover(Aluno aluno) {
-
     }
 }
