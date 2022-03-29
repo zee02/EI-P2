@@ -1,5 +1,5 @@
-package com.company;
 
+package com.company;
 import java.util.LinkedList;
 
 public class Professor {
@@ -7,11 +7,16 @@ public class Professor {
     private long numero;
     private LinkedList<Aula> aulas;
 
-
-    public Professor(String nome, long numero){
+    public Professor(String nome, long numero) {
         this.nome = nome;
         this.numero = numero;
-        this.aulas = new LinkedList<Aula>();
+    }
+
+    public void preencherSumario(Aula aula) {
+        if(this.aulas == null || aula == null || !this.aulas.contains(aula)){
+            return;
+        }
+        //todo
     }
 
     public String getNome() {
@@ -26,33 +31,40 @@ public class Professor {
         this.numero = numero;
     }
 
-    public void preencherSumario(Aula aula){
-        if(aula == null || !aulas.contains(aula)){
-            return;
-        }
-        
-        aula.adicionarLinhaSumario(aula.getNome());
-        aula.adicionarLinhaSumario(Long.toString(aula.getNumero()));
-        aula.adicionarLinhaSumario(this.nome);
-        for (Aluno aluno : aula.getAlunos()) {
-            aluno.preencherSumario(aula);
-        }
-        
-    }
-
-    public void adicionar(Aula aula){
-        if(aula == null || this.aulas.contains(aula)){
+    public void adicionarAula(Aula aula){
+        if(aula == null){
             return;
         }
         this.aulas.add(aula);
-        aula.setProfessor(this);
+        aula.adicionarProfessor(this);
     }
 
-    public void remover(Aula aula) {
-        if(!this.aulas.contains(aula)) {
+    public void removerAula(Aula aula){
+        if(this.aulas==null || aula == null){
             return;
         }
         this.aulas.remove(aula);
         aula.desassociarProfessor();
+    }
+
+    public LinkedList<Aula> getAulas() {
+        return aulas;
+    }
+
+    public LinkedList<Aula> getAulas(Horario horario){
+
+        LinkedList<Aula> aulasAuxiliar = new LinkedList<>();
+        int horaInicio = horario.getHoraInicio();
+        int horaFim = horaInicio + horario.getDuracao();
+        DiaSemana diaSemana = horario.getDiaSemana();
+
+        for (Aula aula : aulas){
+            if(aula.getHorario().getDiaSemana() == diaSemana){
+                if(horaFim > aula.getHorario().getHoraInicio() && horaInicio < aula.getHorario().getHoraInicio()+aula.getHorario().getDuracao()){
+                    aulasAuxiliar.add(aula);
+                }
+            }
+        }
+        return aulasAuxiliar;
     }
 }

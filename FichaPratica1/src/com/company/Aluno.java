@@ -1,5 +1,4 @@
 package com.company;
-
 import java.util.LinkedList;
 
 public class Aluno {
@@ -7,10 +6,14 @@ public class Aluno {
     private long numero;
     private LinkedList<Aula> aulas;
 
-    public Aluno(String nome, long numero){
+    public Aluno(String nome, int numero) {
         this.nome = nome;
         this.numero = numero;
-        aulas = new LinkedList<Aula>();
+        this.aulas = new LinkedList<>();
+    }
+
+    public void adicionarSumario(Aula aula) {
+        //todo
     }
 
     public String getNome() {
@@ -25,26 +28,40 @@ public class Aluno {
         this.numero = numero;
     }
 
-    public void preencherSumario(Aula aula){
-        if(aula == null || !aulas.contains(aula)){
-            return;
-        }
-        aula.adicionarLinhaSumario(nome);
-    }
-
-    public void adicionar(Aula aula) {
+    public void adicionarAula(Aula aula){
         if(aula==null || this.aulas.contains(aula)){
             return;
         }
         this.aulas.add(aula);
-
+        aula.adicionar(this);
     }
 
-    public void remover(Aula aula) {
-        if(!this.aulas.contains(aula)){
+    public void removerAula(Aula aula){
+        if(aula==null || !aulas.contains(aula)){
             return;
         }
         this.aulas.remove(aula);
-        aula.remover(this);
+        aula.removerAluno(this);
+    }
+
+    public LinkedList<Aula> getAulas() {
+        return new LinkedList<>(aulas);
+    }
+
+    public LinkedList<Aula> getAulas(Horario horario){
+
+        LinkedList<Aula> aulasAuxiliar = new LinkedList<>();
+        int horaInicio = horario.getHoraInicio();
+        int horaFim = horaInicio + horario.getDuracao();
+        DiaSemana diaSemana = horario.getDiaSemana();
+
+        for (Aula aula : aulas){
+            if(aula.getHorario().getDiaSemana() == diaSemana){
+                if(horaFim > aula.getHorario().getHoraInicio() && horaInicio < aula.getHorario().getHoraInicio()+aula.getHorario().getDuracao()){
+                    aulasAuxiliar.add(aula);
+                }
+            }
+        }
+        return aulasAuxiliar;
     }
 }

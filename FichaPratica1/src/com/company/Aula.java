@@ -1,29 +1,13 @@
 package com.company;
-
 import java.util.LinkedList;
 
 public class Aula {
-
     private String nome;
     private long numero;
     private String sumario;
     private Professor professor;
     private LinkedList<Aluno> alunos;
-
-    public Aula(String nome, long numero,Professor professor,LinkedList<Aluno> alunos){
-        this.nome = nome;
-        this.numero = numero;
-        this.setProfessor(professor);
-        this.alunos = new LinkedList<>();
-        for (Aluno aluno : alunos){
-            this.adicionar(aluno);
-        }
-        sumario = "";
-    }
-
-    public Aula(String nome, long numero){
-        this(nome,numero,null,new LinkedList<>());
-    }
+    private Horario horario;
 
     public String getNome() {
         return nome;
@@ -38,7 +22,7 @@ public class Aula {
     }
 
     public LinkedList<Aluno> getAlunos() {
-        return new LinkedList<>(alunos);
+        return alunos;
     }
 
     public long getNumero() {
@@ -50,41 +34,73 @@ public class Aula {
     }
 
     public void setProfessor(Professor professor) {
-        if(professor == null || this.professor == professor){
-            return;
+        if(this.professor == null) {
+            this.professor = professor;
         }
-        if(this.professor != null){
-            this.professor.remover(this);
-        }
-        this.professor = professor;
-        professor.adicionar(this);
+        return;
     }
 
-    public void atribuirProfessor(Professor professor){
-
+    public Horario getHorario() {
+        return horario;
     }
 
     public void adicionar(Aluno aluno){
-        if(aluno==null || alunos.contains((aluno))){
+        if(aluno==null || alunos.contains(aluno)){
             return;
         }
         this.alunos.add(aluno);
-        aluno.adicionar(this);
+        aluno.adicionarAula(this);
     }
 
-    public void adicionarLinhaSumario(String linha) {
-        sumario += linha + '\n';
-    }
-
-    public void desassociarProfessor() {
-        if(this.professor == null){
+    public void removerAluno(Aluno aluno){
+        if(aluno==null){
             return;
         }
-        Professor professorRemovido = this.professor;
-        this.professor = null;
-        professorRemovido.remover(this);
+        this.alunos.remove(aluno);
+        aluno.removerAula(this);
     }
 
-    public void remover(Aluno aluno) {
+    public void adicionarProfessor(Professor professor){
+        if(professor == null || this.professor!=null){
+            return;
+        }
+        this.professor = professor;
+        professor.adicionarAula(this);
     }
+
+    public void desassociarProfessor(){
+        if(this.professor==null){
+            return;
+        }
+        this.professor.removerAula(this);
+        this.professor = null;
+    }
+
+    public Horario horario(){
+        return horario;
+    }
+
+    public Aula(String nome, long numero, Horario horario){
+        this(nome, numero,horario ,null, new LinkedList<>());
+    }
+
+    public Aula(String nome, long numero, Horario horario,Professor professor, LinkedList<Aluno> alunos){
+        if(professor == null && alunos == null){
+            return;
+        }
+        this.nome = nome;
+        this.numero = numero;
+        this.horario = horario;
+        this.setProfessor(professor);
+        this.alunos = new LinkedList<>();
+        for(Aluno aluno : alunos){
+            adicionar(aluno);
+        }
+        sumario = "";
+    }
+
+    public void adicionarLinhaSumario(String linha){
+        sumario+=linha +='\n';
+    }
+
 }
