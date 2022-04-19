@@ -11,7 +11,7 @@ public class Pessoa extends Identificador {
     }
 
     public LinkedList<Aula> getAulas() {
-        return aulas;
+        return new LinkedList<>(aulas);
     }
 
     public LinkedList<Aula> getAulas(Horario horario) {
@@ -39,8 +39,12 @@ public class Pessoa extends Identificador {
     }
 
     public void preencherSumario (Aula aula){
-        if(aulas == null || !this.aulas.contains(aula)){
+        if(aulas == null || !this.aulas.contains(aula)) {
             return;
         }
+        escreverSumario(aula);
+    }
+    protected void escreverSumario(Aula aula){
+
     }
 }

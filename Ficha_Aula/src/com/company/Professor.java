@@ -18,7 +18,10 @@ public class Professor extends Pessoa {
     @Override
     public void preencherSumario (Aula aula){
         super.preencherSumario(aula);
+    }
 
+    @Override
+    protected void escreverSumario(Aula aula){
         aula.adicionarLinha(aula.getNome());
         aula.adicionarLinha(Long.toString(aula.getNumero()));
         aula.adicionarLinha(this.nome);
