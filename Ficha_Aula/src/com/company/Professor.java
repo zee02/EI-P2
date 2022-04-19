@@ -1,12 +1,11 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Professor {
-    private String nome;
-    private long numero;
+public class Professor extends Identificador {
     private LinkedList<Aula> aulas;
 
     public Professor (String nome, long numero){
+        super(nome,numero);
         this.nome = nome;
         this.numero = numero;
         this.aulas = new LinkedList<>();

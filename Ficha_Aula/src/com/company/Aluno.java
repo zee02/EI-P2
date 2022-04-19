@@ -1,15 +1,11 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Aluno {
-
-    private String nome;
-    private long numero;
+public class Aluno extends Identificador{
     private LinkedList<Aula> aulas;
 
     public Aluno(String nome, long numero){
-        this.nome = nome;
-        this.numero = numero;
+        super(nome,numero);
         this.aulas = new LinkedList<>();
     }
 
@@ -26,18 +22,6 @@ public class Aluno {
             return;
         }
         aula.adicionarLinha(this.nome);
-    }
-
-    public long getNumero() {
-        return numero;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNumero(long numero) {
-        this.numero = numero;
     }
 
     public void remover(Aula aula){

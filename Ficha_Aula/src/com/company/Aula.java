@@ -1,10 +1,7 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Aula {
-
-    private String nome;
-    private long numero;
+public class Aula extends Identificador{
     //private String sumario;
     private StringBuilder sumario;
     private Professor professor;
@@ -12,17 +9,11 @@ public class Aula {
     private Horario horario;
 
     public Aula(String nome, long numero, Horario horario){
-        /*this.nome = nome;
-        this.numero = numero;
-        this.alunos = new LinkedList<>();
-        this.sumario = new StringBuilder();
-        this.professor = null;*/
         this(nome,numero,horario, null, new LinkedList<>());
     }
 
     public Aula(String nome, long numero,Horario horario, Professor professor, LinkedList<Aluno> alunos) {
-        this.nome = nome;
-        this.numero = numero;
+        super(nome,numero);
         this.alunos = new LinkedList<>();
         this.sumario = new StringBuilder();
         this.horario = horario;
@@ -56,18 +47,6 @@ public class Aula {
         this.professor = null;
         professorRemovido.remover(this);
 
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public long getNumero() {
-        return numero;
-    }
-
-    public void setNumero(long numero) {
-        this.numero = numero;
     }
 
     public String getSumario() {
