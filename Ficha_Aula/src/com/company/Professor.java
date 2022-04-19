@@ -6,8 +6,6 @@ public class Professor extends Identificador {
 
     public Professor (String nome, long numero){
         super(nome,numero);
-        this.nome = nome;
-        this.numero = numero;
         this.aulas = new LinkedList<>();
     }
 

@@ -42,7 +42,6 @@ public class Aula extends Identificador{
         if (this.professor == null) {
             return;
         }
-
         Professor professorRemovido = this.professor;
         this.professor = null;
         professorRemovido.remover(this);
