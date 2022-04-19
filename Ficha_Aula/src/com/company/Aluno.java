@@ -1,48 +1,27 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Aluno extends Identificador{
-    private LinkedList<Aula> aulas;
+public class Aluno extends Pessoa{
 
     public Aluno(String nome, long numero){
         super(nome,numero);
-        this.aulas = new LinkedList<>();
     }
 
+    @Override
     public void adicionar(Aula aula){
-        if(aula == null || this.aulas.contains(aula)){
-            return;
-        }
-        this.aulas.add(aula);
+        super.adicionar(aula);
         aula.adicionar(this);
     }
 
+    @Override
     public void preencherSumario(Aula aula){
-        if(aula == null || !this.aulas.contains(aula)){
-            return;
-        }
+        super.preencherSumario(aula);
         aula.adicionarLinha(this.nome);
     }
 
+    @Override
     public void remover(Aula aula){
-        if(aula == null || !this.aulas.contains(aula)){
-            return;
-        }
-        this.aulas.remove(aula);
+        super.remover(aula);
         aula.remover(this);
-    }
-
-    public LinkedList<Aula> getAulas() {
-        return aulas;
-    }
-
-    public LinkedList<Aula> getAulas(Horario horario){
-        LinkedList<Aula> aulasHorario = new LinkedList<Aula>();
-        for (Aula aula: aulas) {
-            if(aula.getHorario().isSobreposto(horario)==true){
-                aulasHorario.add(aula);
-            }
-        }
-        return aulasHorario;
     }
 }

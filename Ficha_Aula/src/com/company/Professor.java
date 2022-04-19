@@ -1,7 +1,7 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Professor extends Identificador {
+public class Professor extends Pessoa {
     private LinkedList<Aula> aulas;
 
     public Professor (String nome, long numero){
@@ -9,21 +9,15 @@ public class Professor extends Identificador {
         this.aulas = new LinkedList<>();
     }
 
+    @Override
     public void adicionar(Aula aula){
-        if(aula==null){
-            return;
-        }
-        if(this.aulas.contains(aula)){
-            return;
-        }
-        this.aulas.add(aula);
+        super.adicionar(aula);
         aula.setProfessor(this);
     }
 
+    @Override
     public void preencherSumario (Aula aula){
-        if(!this.aulas.contains(aula)){
-            return;
-        }
+        super.preencherSumario(aula);
 
         aula.adicionarLinha(aula.getNome());
         aula.adicionarLinha(Long.toString(aula.getNumero()));
@@ -34,38 +28,24 @@ public class Professor extends Identificador {
         }
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
 
+    @Override
     public long getNumero(){
         return numero;
     }
 
+    @Override
     public void setNumero(long numero) {
         this.numero = numero;
     }
 
+    @Override
     public void remover(Aula aula){
-        if(!aulas.contains(aula)) {
-            return;
-        }
-
-        this.aulas.remove(aula);
+        super.remover(aula);
         aula.desassociarProfessor();
-    }
-
-    public LinkedList<Aula> getAulas() {
-        return aulas;
-    }
-
-    public LinkedList<Aula> getAulas(Horario horario) {
-        LinkedList<Aula> aulasHorario = new LinkedList<Aula>();
-        for (Aula aula: aulas) {
-            if(aula.getHorario().isSobreposto(horario)==true){
-                aulasHorario.add(aula);
-            }
-        }
-        return aulasHorario;
     }
 }
