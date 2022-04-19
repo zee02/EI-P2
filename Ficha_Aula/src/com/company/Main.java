@@ -57,6 +57,9 @@ public class Main {
         LinkedList<Aula> aulasAluno2TercaFeiraAposAsVinteHoras = aluno2.getAulas(new Horario(DiaSemana.TERCA_FEIRA, 20, 4));
 
         LinkedList<Aula> aulasAluno3TercaFeira = aluno3.getAulas(new Horario(DiaSemana.TERCA_FEIRA, 8, 16));
+
+        professor3.preencherSumario(aula4);
+        System.out.println(aula4.getSumario());
     }
 
     public static void main(String[] args) {
