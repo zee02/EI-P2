@@ -2,16 +2,18 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class Pessoa extends Identificador {
-    private LinkedList<Aula> aulas;
+public abstract class Pessoa extends Identificador{
+
+    protected LinkedList<Aula> aulas;
 
     public Pessoa(String nome, long numero) {
         super(nome, numero);
         aulas = new LinkedList<>();
     }
 
+
     public LinkedList<Aula> getAulas() {
-        return new LinkedList<>(aulas);
+        return aulas;
     }
 
     public LinkedList<Aula> getAulas(Horario horario) {
@@ -28,23 +30,33 @@ public class Pessoa extends Identificador {
         if(aula==null || this.aulas.contains(aula)){
             return;
         }
-        this.aulas.add(aula);
+        aulas.add(aula);
+        associar(aula);
     }
+
+    protected abstract void associar(Aula aula);
 
     public void remover(Aula aula){
         if(!aulas.contains(aula)) {
             return;
         }
-        this.aulas.remove(aula);
+
+        aulas.remove(aula);
+        desassociar(aula);
     }
 
+    protected abstract void desassociar(Aula aula);
+
+
     public void preencherSumario (Aula aula){
-        if(aulas == null || !this.aulas.contains(aula)) {
+        if(aula == null || !aulas.contains(aula)){
             return;
         }
         escreverSumario(aula);
     }
-    protected void escreverSumario(Aula aula){
 
+    protected void escreverSumario(Aula aula){
+        aula.adicionarLinha(this.nome);
     }
+
 }

@@ -1,18 +1,10 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Professor extends Pessoa {
-    private LinkedList<Aula> aulas;
+public class Professor extends Pessoa{
 
     public Professor (String nome, long numero){
-        super(nome,numero);
-        this.aulas = new LinkedList<>();
-    }
-
-    @Override
-    public void adicionar(Aula aula){
-        super.adicionar(aula);
-        aula.setProfessor(this);
+        super(nome, numero);
     }
 
     @Override
@@ -21,34 +13,34 @@ public class Professor extends Pessoa {
     }
 
     @Override
-    protected void escreverSumario(Aula aula){
+    protected void escreverSumario(Aula aula) {
         aula.adicionarLinha(aula.getNome());
         aula.adicionarLinha(Long.toString(aula.getNumero()));
         aula.adicionarLinha(this.nome);
+        super.escreverSumario(aula);
 
         for (Aluno aluno : aula.getAlunos()) {
             aluno.preencherSumario(aula);
         }
+
     }
 
     @Override
-    public String getNome() {
-        return nome;
+    public void adicionar(Aula aula){
+        super.adicionar(aula);
     }
 
     @Override
-    public long getNumero(){
-        return numero;
+    protected void associar(Aula aula) {
+        aula.setProfessor(this);
     }
 
-    @Override
-    public void setNumero(long numero) {
-        this.numero = numero;
-    }
-
-    @Override
     public void remover(Aula aula){
         super.remover(aula);
+    }
+
+    @Override
+    protected void desassociar(Aula aula) {
         aula.desassociarProfessor();
     }
 }
