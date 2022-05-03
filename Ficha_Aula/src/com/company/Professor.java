@@ -10,10 +10,6 @@ public class Professor extends Pessoa{
         super(nome, numero);
     }
 
-    @Override
-    public void preencherSumario (Aula aula){
-        super.preencherSumario(aula);
-    }
 
     @Override
     protected void escreverSumario(Aula aula) {
@@ -70,5 +66,18 @@ public class Professor extends Pessoa{
     public void desassociarGabinete(){
 
     }
+    public void abrir(Sala sala){
 
+    }
+
+    public  void fechar(Sala sala){
+
+    }
+
+    public void adicionar(Horario horario){
+
+    }
+    public void remover(Horario horario){
+
+    }
 }
