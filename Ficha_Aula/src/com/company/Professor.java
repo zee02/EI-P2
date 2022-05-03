@@ -3,6 +3,9 @@ import java.util.LinkedList;
 
 public class Professor extends Pessoa{
 
+    private GabineteSeguranca gabinete;
+    private LinkedList<Horario> horariosAtendimento;
+
     public Professor (String nome, long numero){
         super(nome, numero);
     }
@@ -43,4 +46,29 @@ public class Professor extends Pessoa{
     protected void desassociar(Aula aula) {
         aula.desassociarProfessor();
     }
+
+    private GabineteSeguranca getGabinete(){
+        return gabinete;
+    }
+
+    public LinkedList<Horario> getHorariosAtendimento(){
+        return horariosAtendimento;
+    }
+
+    public void abrirGabinete(){
+
+    }
+
+    public void fecharGabinete(){
+
+    }
+
+    public void setGabinete(GabineteSeguranca gabinete){
+        this.gabinete = gabinete;
+    }
+
+    public void desassociarGabinete(){
+
+    }
+
 }

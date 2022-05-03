@@ -102,11 +102,11 @@ public class Aula extends Identificador{
 
     public void setSala(Sala sala) {
         this.sala = sala;
-        sala.adicionarAula(this);
+        sala.adicionar(this);
     }
 
     public void desassociarSala(Sala sala){
         this.sala = null;
-        sala.removerAula(this);
+        sala.remover(this);
     }
 }

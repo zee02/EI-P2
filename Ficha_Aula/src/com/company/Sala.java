@@ -2,13 +2,12 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class Sala {
-    private String nome;
+public class Sala extends Descritor {
     private LinkedList<Aula> aulas;
     private boolean aberta;
 
-    public String getNome() {
-        return nome;
+    public Sala(String nome) {
+        super(nome);
     }
 
     public LinkedList<Aula> getAulas() {
@@ -31,12 +30,12 @@ public class Sala {
         this.aberta = false;
     }
 
-    public void adicionarAula(Aula aula){
+    public void adicionar(Aula aula){
         aulas.add(aula);
         aula.setSala(this);
     }
 
-    public void removerAula(Aula aula){
+    public void remover(Aula aula){
         aulas.remove(aula);
         aula.desassociarSala(this);
     }
