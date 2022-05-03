@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Identificador {
+public class Seguranca extends Pessoa {
 
     private GabineteSeguranca gabinete;
     private LinkedList<Horario> horariosAtendimento;

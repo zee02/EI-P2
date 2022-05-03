@@ -1,7 +1,7 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Professor extends Pessoa{
+public class Professor extends PessoaComAulas {
 
     private GabineteSeguranca gabinete;
     private LinkedList<Horario> horariosAtendimento;
@@ -9,7 +9,6 @@ public class Professor extends Pessoa{
     public Professor (String nome, long numero){
         super(nome, numero);
     }
-
 
     @Override
     protected void escreverSumario(Aula aula) {
@@ -59,7 +58,7 @@ public class Professor extends Pessoa{
 
     }
 
-    public void setGabinete(GabineteSeguranca gabinete){
+    public void setGabinete(){
         this.gabinete = gabinete;
     }
 

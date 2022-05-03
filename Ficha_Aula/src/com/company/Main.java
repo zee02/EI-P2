@@ -9,7 +9,7 @@ public class Main {
 
         Identificador identificador1 = aluno1;
         Identificador identificador2 = professor1;
-        Pessoa p1 = aluno1;
+        PessoaComAulas p1 = aluno1;
         p1.getAulas();
         System.out.println(aluno1.getNome());
         System.out.println(professor1.getNome());

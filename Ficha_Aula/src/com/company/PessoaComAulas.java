@@ -2,13 +2,15 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class Sala extends Divisao {
-    private LinkedList<Aula> aulas;
+public abstract class PessoaComAulas extends Pessoa {
+    protected LinkedList<Aula> aulas;
 
-    public Sala(String nome, boolean aberta) {
-        super(nome, aberta);
+
+    public PessoaComAulas(String nome, long numero) {
+        super(nome, numero);
         aulas = new LinkedList<>();
     }
+
 
     public LinkedList<Aula> getAulas() {
         return aulas;
@@ -25,18 +27,36 @@ public class Sala extends Divisao {
     }
 
     public void adicionar(Aula aula){
-        if(aula == null || aulas.contains(aula)){
+        if(aula==null || this.aulas.contains(aula)){
             return;
         }
         aulas.add(aula);
-        aula.setSala(this);
+        associar(aula);
     }
 
+    protected abstract void associar(Aula aula);
+
     public void remover(Aula aula){
-        if(!aulas.contains(aula)){
+        if(!aulas.contains(aula)) {
             return;
         }
+
         aulas.remove(aula);
-        aula.desassociarSala();
+        desassociar(aula);
     }
+
+    protected abstract void desassociar(Aula aula);
+
+
+    public void preencherSumario (Aula aula){
+        if(aula == null || !aulas.contains(aula)){
+            return;
+        }
+        escreverSumario(aula);
+    }
+
+    protected void escreverSumario(Aula aula){
+        aula.adicionarLinha(this.nome);
+    }
+
 }
