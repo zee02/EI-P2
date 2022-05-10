@@ -1,6 +1,6 @@
 package com.company;
 
-public class Descritor {
+public abstract class Descritor {
     protected String nome;
 
     public Descritor(String nome) {

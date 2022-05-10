@@ -21,14 +21,13 @@ public class Aula extends Identificador{
     public Aula(String nome, long numero,Horario horario, Sala sala, Professor professor, LinkedList<Aluno> alunos) {
         super(nome, numero);
         this.horario = horario;
-        setSala(sala);
+        this.setSala(sala);
         this.setProfessor(professor);
         this.alunos = new LinkedList<>();
-        this.sumario = new StringBuilder();
-
         for (Aluno aluno : alunos) {
-            adicionar(aluno);
+            this.adicionar(aluno);
         }
+        this.sumario = new StringBuilder();
     }
 
     public void adicionar(Aluno aluno) {
@@ -69,9 +68,7 @@ public class Aula extends Identificador{
             return;
         }
 
-        if (this.professor != null) {
-            this.desassociarProfessor();
-        }
+        desassociarProfessor();
 
         this.professor = professor;
         professor.adicionar(this);
@@ -105,9 +102,7 @@ public class Aula extends Identificador{
             return;
         }
 
-        if (this.sala != null) {
-            this.sala.remover(this);
-        }
+        desassociarSala();
 
         this.sala = sala;
         sala.adicionar(this);

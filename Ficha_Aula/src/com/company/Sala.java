@@ -33,7 +33,7 @@ public class Sala extends Divisao {
     }
 
     public void remover(Aula aula){
-        if(!aulas.contains(aula)){
+        if(aula==null || !aulas.contains(aula)){
             return;
         }
         aulas.remove(aula);

@@ -1,8 +1,7 @@
 package com.company;
-
 import java.util.LinkedList;
 
-public abstract class PessoaComAulas extends Pessoa {
+public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
     protected LinkedList<Aula> aulas;
 
 

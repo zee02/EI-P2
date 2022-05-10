@@ -1,7 +1,11 @@
 package com.company;
 
-public class Divisao extends Descritor {
+public abstract class Divisao extends Descritor {
     private boolean aberta;
+
+    public Divisao(String nome){
+        this(nome, false);
+    }
 
     public Divisao(String nome, boolean aberta) {
         super(nome);
@@ -12,11 +16,11 @@ public class Divisao extends Descritor {
         return aberta;
     }
 
-    public void abrir(CartaoDeAcesso cartao) {
+    public void abrir() {
         aberta = true;
     }
 
-    public void fechar(CartaoDeAcesso cartao) {
+    public void fechar() {
         aberta = false;
     }
 }
