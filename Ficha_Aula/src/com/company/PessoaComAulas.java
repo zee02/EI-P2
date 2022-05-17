@@ -3,7 +3,7 @@ import java.util.LinkedList;
 
 public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
     protected LinkedList<Aula> aulas;
-
+    private GestorAulas gestorAulas;
 
     public PessoaComAulas(String nome, long numero) {
         super(nome, numero);
@@ -11,36 +11,30 @@ public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
     }
 
 
+    @Override
     public LinkedList<Aula> getAulas() {
-        return aulas;
+        return new LinkedList<>(aulas);
     }
 
     public LinkedList<Aula> getAulas(Horario horario) {
-        LinkedList<Aula> aulasHorario = new LinkedList<Aula>();
+        LinkedList<Aula> aulasAuxiliar = new LinkedList<Aula>();
         for (Aula aula: aulas) {
-            if(aula.getHorario().isSobreposto(horario)==true){
-                aulasHorario.add(aula);
+            if(horario.isSobreposto(aula.getHorario())){
+                aulasAuxiliar.add(aula);
             }
         }
-        return aulasHorario;
+        return aulasAuxiliar;
     }
 
     public void adicionar(Aula aula){
-        if(aula==null || this.aulas.contains(aula)){
-            return;
-        }
-        aulas.add(aula);
+        gestorAulas.adicionar(aula);
         associar(aula);
     }
 
     protected abstract void associar(Aula aula);
 
     public void remover(Aula aula){
-        if(!aulas.contains(aula)) {
-            return;
-        }
-
-        aulas.remove(aula);
+        gestorAulas.remover(aula);
         desassociar(aula);
     }
 
@@ -48,7 +42,7 @@ public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
 
 
     public void preencherSumario (Aula aula){
-        if(aula == null || !aulas.contains(aula)){
+        if(aula == null || !gestorAulas.contem(aula)){
             return;
         }
         escreverSumario(aula);

@@ -36,7 +36,7 @@ public class Professor extends PessoaComAulas {
     }
 
     public void remover(Aula aula){
-        super.remover(aul);
+        super.remover(aula);
     }
 
     @Override
