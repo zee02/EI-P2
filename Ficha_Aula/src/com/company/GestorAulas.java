@@ -4,9 +4,11 @@ import java.util.LinkedList;
 
 public class GestorAulas {
     private LinkedList<Aula> aulas;
+    private AssociavelAulas associavelAulas;
 
-    public GestorAulas(){
+    public GestorAulas(AssociavelAulas associavelAulas){
         aulas =  new LinkedList<>();
+        this.associavelAulas = associavelAulas;
     }
 
     public LinkedList<Aula> getAulas(){
@@ -34,9 +36,8 @@ public class GestorAulas {
         if(!aulas.contains(aula)) {
             return;
         }
-
         aulas.remove(aula);
-    }
+        associavelAulas.desassociar(aula);}
 
     public boolean contem(Aula aula){
         return aulas.contains(aula);

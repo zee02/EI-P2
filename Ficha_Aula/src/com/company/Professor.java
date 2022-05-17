@@ -31,7 +31,7 @@ public class Professor extends PessoaComAulas {
     }
 
     @Override
-    protected void associar(Aula aula) {
+    public void associar(Aula aula) {
         aula.setProfessor(this);
     }
 
@@ -40,7 +40,7 @@ public class Professor extends PessoaComAulas {
     }
 
     @Override
-    protected void desassociar(Aula aula) {
+    public void desassociar(Aula aula) {
         aula.desassociarProfessor();
     }
 

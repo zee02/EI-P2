@@ -13,7 +13,7 @@ public class Aluno extends PessoaComAulas {
 */
 
     @Override
-    protected void associar(Aula aula) {
+    public void associar(Aula aula) {
         aula.adicionar(this);
     }
 
@@ -23,7 +23,7 @@ public class Aluno extends PessoaComAulas {
     }
 
     @Override
-    protected void desassociar(Aula aula) {
+    public void desassociar(Aula aula) {
         aula.remover(this);
     }
 }

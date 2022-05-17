@@ -1,13 +1,13 @@
 package com.company;
 import java.util.LinkedList;
 
-public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
+public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas,AssociavelAulas{
     protected LinkedList<Aula> aulas;
     private GestorAulas gestorAulas;
 
     public PessoaComAulas(String nome, long numero) {
         super(nome, numero);
-        aulas = new LinkedList<>();
+        gestorAulas = new GestorAulas(this);
     }
 
 
@@ -28,17 +28,15 @@ public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
 
     public void adicionar(Aula aula){
         gestorAulas.adicionar(aula);
-        associar(aula);
     }
 
-    protected abstract void associar(Aula aula);
+    public abstract void associar(Aula aula);
 
     public void remover(Aula aula){
         gestorAulas.remover(aula);
-        desassociar(aula);
     }
 
-    protected abstract void desassociar(Aula aula);
+    public abstract void desassociar(Aula aula);
 
 
     public void preencherSumario (Aula aula){
