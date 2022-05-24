@@ -5,7 +5,7 @@ public class Professor extends PessoaComAulas implements Funcionario<GabinetePro
 
     //private GabineteProfessor gabinete;
     //private LinkedList<Horario> horariosAtendimento;
-    private GestorFuncionario<GabineteProfessor> gestorFuncionario;
+    private GestorFuncionario<GabineteProfessor, Sala> gestorFuncionario;
 
     public Professor(String nome, long numero, GabineteProfessor gabinete){
         super(nome, numero);

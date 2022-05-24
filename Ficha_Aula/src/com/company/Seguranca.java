@@ -6,7 +6,7 @@ public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca, 
 
     //private GabineteSeguranca gabinete;
     //private LinkedList<Horario> horariosAtendimento;
-    private GestorFuncionario<GabineteSeguranca> gestorFuncionario;
+    private GestorFuncionario<GabineteSeguranca, Divisao> gestorFuncionario;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete) {
         super(nome, numero);
