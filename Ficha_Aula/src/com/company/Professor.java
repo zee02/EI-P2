@@ -1,16 +1,16 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Professor extends PessoaComAulas implements Funcionario {
+public class Professor extends PessoaComAulas implements Funcionario<GabineteProfessor, Sala> {
 
-    private GabineteProfessor gabinete;
+    //private GabineteProfessor gabinete;
     //private LinkedList<Horario> horariosAtendimento;
-    private GestorFuncionario gestorFuncionario;
+    private GestorFuncionario<GabineteProfessor> gestorFuncionario;
 
-    public Professor(String nome, long numero, GabineteProfessor gabineteProfessorA1){
+    public Professor(String nome, long numero, GabineteProfessor gabinete){
         super(nome, numero);
         setGabinete(gabinete);
-        gestorFuncionario = new GestorFuncionario();
+        gestorFuncionario = new GestorFuncionario<>(this);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Professor extends PessoaComAulas implements Funcionario {
     }
 
     public GabineteProfessor getGabinete(){
-        return gabinete;
+        return gestorFuncionario.getGabinete();
     }
 
     public LinkedList<Horario> getHorariosAtendimento(){
@@ -54,32 +54,19 @@ public class Professor extends PessoaComAulas implements Funcionario {
     }
 
     public void abrirGabinete(){
-        if(gabinete != null || !gabinete.isAberta()){
-            gabinete.abrir();
-        }
+        gestorFuncionario.abrirGabinete();
     }
 
     public void fecharGabinete(){
-        if(gabinete != null && gabinete.isAberta()){
-            gabinete.fechar();
-        }
+        gestorFuncionario.fecharGabinete();
     }
 
     public void setGabinete(GabineteProfessor gabinete){
-        if(gabinete == null || this.gabinete==gabinete){
-            return;
-        }
-        this.gabinete = gabinete;
-        gabinete.adicionar(this);
+        gestorFuncionario.setGabinete(gabinete);
     }
 
     public void desassociarGabinete(){
-        if(gabinete==null){
-            return;
-        }
-        GabineteProfessor gabineteARemover = gabinete;
-        gabinete = null;
-        gabineteARemover.remover(this);
+        gestorFuncionario.desassociarGabinete();
 
     }
     public void abrir(Sala sala){

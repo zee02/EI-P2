@@ -2,11 +2,50 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class GestorFuncionario {
+public class GestorFuncionario<TGabinete extends Gabinete> {
     private LinkedList<Horario> horariosAtendimento;
+    private TGabinete gabinete;
+    private Funcionario<TGabinete> funcionario;
 
-    public GestorFuncionario(){
+    public GestorFuncionario(Funcionario<TGabinete> funcionario){
         horariosAtendimento = new LinkedList<>();
+        this.funcionario = funcionario;
+    }
+
+    public TGabinete getGabinete() {
+        return gabinete;
+    }
+
+    public void setGabinete(TGabinete gabinete) {
+        if(gabinete == null || this.gabinete==gabinete){
+            return;
+        }
+
+        desassociarGabinete();
+
+        this.gabinete = gabinete;
+        gabinete.adicionar(funcionario);
+    }
+
+    public void abrirGabinete(){
+        if(gabinete != null || !gabinete.isAberta()){
+            gabinete.abrir();
+        }
+    }
+
+    public void fecharGabinete(){
+        if(gabinete != null && !gabinete.isAberta()){
+            gabinete.fechar();
+        }
+    }
+
+    public void desassociarGabinete() {
+        if(gabinete==null){
+            return;
+        }
+        TGabinete gabineteARemover = gabinete;
+        gabinete = null;
+        gabineteARemover.remover(funcionario);
     }
 
     public LinkedList<Horario> getHorariosAtendimento(){
