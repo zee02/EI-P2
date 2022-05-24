@@ -4,12 +4,13 @@ import java.util.LinkedList;
 public class Professor extends PessoaComAulas implements Funcionario {
 
     private GabineteProfessor gabinete;
-    private LinkedList<Horario> horariosAtendimento;
+    //private LinkedList<Horario> horariosAtendimento;
+    private GestorFuncionario gestorFuncionario;
 
     public Professor(String nome, long numero, GabineteProfessor gabineteProfessorA1){
         super(nome, numero);
         setGabinete(gabinete);
-        horariosAtendimento = new LinkedList<>();
+        gestorFuncionario = new GestorFuncionario();
     }
 
     @Override
@@ -49,7 +50,7 @@ public class Professor extends PessoaComAulas implements Funcionario {
     }
 
     public LinkedList<Horario> getHorariosAtendimento(){
-        return horariosAtendimento;
+        return gestorFuncionario.getHorariosAtendimento();
     }
 
     public void abrirGabinete(){
@@ -94,9 +95,10 @@ public class Professor extends PessoaComAulas implements Funcionario {
     }
 
     public void adicionar(Horario horario){
-
+        gestorFuncionario.adicionar(horario);
     }
-    public void remover(Horario horario){
 
+    public void remover(Horario horario){
+        gestorFuncionario.remover(horario);
     }
 }

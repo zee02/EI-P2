@@ -2,13 +2,16 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Pessoa {
+public class Seguranca extends Pessoa implements Funcionario {
 
     private GabineteSeguranca gabinete;
-    private LinkedList<Horario> horariosAtendimento;
+    //private LinkedList<Horario> horariosAtendimento;
+    private GestorFuncionario gestorFuncionario;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabineteSegurancaA) {
         super(nome, numero);
+        setGabinete(gabinete);
+        gestorFuncionario = new GestorFuncionario();
     }
 
 
@@ -17,7 +20,7 @@ public class Seguranca extends Pessoa {
     }
 
     public LinkedList<Horario> getHorariosAtendimento() {
-        return horariosAtendimento;
+        return gestorFuncionario.getHorariosAtendimento();
     }
 
     public void setGabinete(GabineteSeguranca gabinete) {
@@ -72,23 +75,11 @@ public class Seguranca extends Pessoa {
     }
 
     public void remover(Horario horario){
-        if(horario == null){
-            return;
-        }
-        horariosAtendimento.remove(horario);
+        gestorFuncionario.remover(horario);
     }
 
     public void adicionar(Horario horario){
-        if(horario == null){
-            return;
-        }
-
-        for (Horario horario1 : horariosAtendimento) {
-            if(horario.isSobreposto(horario1)){
-                return;
-            }
-        }
-        horariosAtendimento.add(horario);
+        gestorFuncionario.adicionar(horario);
     }
 
     public void desassociarGabinete() {
