@@ -1,7 +1,7 @@
 package com.company;
 import java.util.LinkedList;
 
-public class Professor extends PessoaComAulas {
+public class Professor extends PessoaComAulas implements Funcionario {
 
     private GabineteProfessor gabinete;
     private LinkedList<Horario> horariosAtendimento;
