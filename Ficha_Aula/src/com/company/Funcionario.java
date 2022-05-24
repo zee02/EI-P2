@@ -2,8 +2,12 @@ package com.company;
 
 import java.util.LinkedList;
 
-public interface Funcionario {
+public interface Funcionario<TGabinete extends Gabinete, TDivisao extends Divisao> {
     LinkedList<Horario> getHorariosAtendimento();
+
+    TGabinete getGabinete();
+
+    void setGabinete(TGabinete gabinete);
 
     void abrirGabinete();
 
@@ -15,4 +19,6 @@ public interface Funcionario {
 
     void remover(Horario horario);
 
+    void abrir(TDivisao divisao);
+    void fechar(TDivisao divisao);
 }

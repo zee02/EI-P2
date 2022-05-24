@@ -2,21 +2,21 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Pessoa implements Funcionario {
+public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca, Divisao> {
 
-    private GabineteSeguranca gabinete;
+    //private GabineteSeguranca gabinete;
     //private LinkedList<Horario> horariosAtendimento;
-    private GestorFuncionario gestorFuncionario;
+    private GestorFuncionario<GabineteSeguranca> gestorFuncionario;
 
-    public Seguranca(String nome, long numero, GabineteSeguranca gabineteSegurancaA) {
+    public Seguranca(String nome, long numero, GabineteSeguranca gabinete) {
         super(nome, numero);
         setGabinete(gabinete);
-        gestorFuncionario = new GestorFuncionario();
+        gestorFuncionario = new GestorFuncionario<>(this);
     }
 
 
     public GabineteSeguranca getGabinete() {
-        return gabinete;
+        return gestorFuncionario.getGabinete();
     }
 
     public LinkedList<Horario> getHorariosAtendimento() {
@@ -24,25 +24,15 @@ public class Seguranca extends Pessoa implements Funcionario {
     }
 
     public void setGabinete(GabineteSeguranca gabinete) {
-        if(gabinete == null || this.gabinete==gabinete){
-            return;
-        }
-        this.gabinete = gabinete;
-        gabinete.adicionar(this);
+        gestorFuncionario.setGabinete(gabinete);
     }
 
     public void abrirGabinete(){
-        if(gabinete.isAberta()){
-            return;
-        }
-        gabinete.abrir();
+        gestorFuncionario.abrirGabinete();
     }
 
     public void fecharGabinete(){
-        if(gabinete.isAberta()){
-            gabinete.abrir();
-        }
-
+        gestorFuncionario.fecharGabinete();
     }
 
     public void abrir(Sala sala){
@@ -62,7 +52,7 @@ public class Seguranca extends Pessoa implements Funcionario {
 
     public void fechar(Divisao divisao){
         if(divisao == null || !divisao.isAberta()){
-            gabinete.abrir();
+            divisao.abrir();
         }
     }
 
@@ -83,11 +73,6 @@ public class Seguranca extends Pessoa implements Funcionario {
     }
 
     public void desassociarGabinete() {
-        if(gabinete==null){
-            return;
-        }
-        GabineteSeguranca gabineteARemover = gabinete;
-        gabinete = null;
-        gabineteARemover.remover(this);
+        gestorFuncionario.desassociarGabinete();
     }
 }
