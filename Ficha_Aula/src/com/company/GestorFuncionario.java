@@ -2,12 +2,12 @@ package com.company;
 
 import java.util.LinkedList;
 
-public class GestorFuncionario<TGabinete extends Gabinete> {
+public class GestorFuncionario<TGabinete extends Gabinete, TDivisao extends Divisao> {
     private LinkedList<Horario> horariosAtendimento;
     private TGabinete gabinete;
-    private Funcionario<TGabinete> funcionario;
+    private Funcionario<TGabinete, TDivisao> funcionario;
 
-    public GestorFuncionario(Funcionario<TGabinete> funcionario){
+    public GestorFuncionario(Funcionario<TGabinete, TDivisao> funcionario){
         horariosAtendimento = new LinkedList<>();
         this.funcionario = funcionario;
     }
