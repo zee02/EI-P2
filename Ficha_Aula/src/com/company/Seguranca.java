@@ -10,8 +10,8 @@ public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca, 
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete) {
         super(nome, numero);
-        setGabinete(gabinete);
         gestorFuncionario = new GestorFuncionario<>(this);
+        setGabinete(gabinete);
     }
 
 

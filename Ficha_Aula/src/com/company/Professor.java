@@ -9,8 +9,8 @@ public class Professor extends PessoaComAulas implements Funcionario<GabinetePro
 
     public Professor(String nome, long numero, GabineteProfessor gabinete){
         super(nome, numero);
-        setGabinete(gabinete);
         gestorFuncionario = new GestorFuncionario<>(this);
+        setGabinete(gabinete);
     }
 
     @Override
@@ -88,4 +88,6 @@ public class Professor extends PessoaComAulas implements Funcionario<GabinetePro
     public void remover(Horario horario){
         gestorFuncionario.remover(horario);
     }
+
+
 }

@@ -28,6 +28,7 @@ public class Aula extends Identificador{
             this.adicionar(aluno);
         }
         this.sumario = new StringBuilder();
+
     }
 
     public void adicionar(Aluno aluno) {
@@ -116,5 +117,18 @@ public class Aula extends Identificador{
         Sala salaRemovida = this.sala;
         this.sala = null;
         salaRemovida.remover(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Aula{" +
+                "sumario=" + sumario +
+                ", professor=" + professor +
+                ", alunos=" + alunos +
+                ", horario=" + horario +
+                ", sala=" + sala +
+                ", nome='" + nome + '\'' +
+                ", numero=" + numero +
+                '}';
     }
 }
